@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Checkout</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <h4>Checkout!</h4>
+            </div>
+            <div class="form">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Quanity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items%}
+                        {% csrf_token %}
+                            <tr>
+                                <th>{{item.name}}</th>
+                                <th>{{item.price}}</th>
+                                <th>
+                                    <form action='/amadon/buy' method='post'>
+                                        {% csrf_token %}
+                                        <input type='hidden' name='product' value='{{item.name}}' />
+                                        <label>                                     
+                                            <select name='quantity'>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                        </label>
+                                        <input type='submit' value="Buy"/>
+                                    </form>
+                                </th>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                <form action="/amadon" method="POST">
+                    {% csrf_token %}
+                    <label><input type='submit' id="button" name='back_button' value='Go back'></label>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

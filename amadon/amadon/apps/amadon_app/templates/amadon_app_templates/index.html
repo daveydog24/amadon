@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Amadon</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="header">
+                <h4>Amadon Store!</h4>
+            </div>
+            <form action= 'amadon/add_item'  method='post'>
+                {% csrf_token %}
+                <label>Item Name: <input type='text' name='name'></label>
+                <label>Item Price: <input type='text' name='price'></label>
+                <label><input type='submit' id="button" name='add_item' value=add_item></label>
+            </form>
+            </div>
+            <div >
+                <form action= 'amadon/clear_cart'  method='post'>
+                    {% csrf_token %}
+                    <label><input type='submit' id="button" name='clear_cart' value=clear_cart></label>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
